@@ -83,12 +83,8 @@ body {
     gap: 8px;
 }
 
-.nav-logo .logo-img {
-    height: 40px;
-    width: auto;
-    max-width: 50px;
-    object-fit: contain;
-    display: block;
+.nav-logo i {
+    font-size: 1.8rem;
 }
 
 .logo-texto {
@@ -381,6 +377,13 @@ body {
     letter-spacing: 0.5px;
     min-height: var(--touch-target);
     min-width: var(--touch-target);
+}
+
+.botao-icon {
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
+    display: block;
 }
 
 .botao-primario {
