@@ -6,6 +6,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 :root {
@@ -20,6 +22,7 @@
     --sombra: 0 10px 30px rgba(0,0,0,0.1);
     --sombra-hover: 0 15px 40px rgba(0,0,0,0.15);
     --transicao: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --touch-target: 48px;
 }
 
 /* ========================================
@@ -28,6 +31,9 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -35,6 +41,7 @@ body {
     background: var(--cor-fundo);
     color: var(--cor-texto);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
@@ -90,8 +97,12 @@ body {
     cursor: pointer;
     background: none;
     border: none;
-    padding: 0;
+    padding: 10px;
     z-index: 101;
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
+    justify-content: center;
+    align-items: center;
 }
 
 .menu-toggle span {
@@ -359,10 +370,13 @@ body {
     transition: var(--transicao);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 28px;
+    padding: 14px 28px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
 }
 
 .botao-primario {
@@ -473,11 +487,14 @@ body {
 }
 
 /* ========================================
-   RESPONSIVO
+   RESPONSIVO - TABLET (até 768px)
    ======================================== */
 
 @media (max-width: 768px) {
-@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
     .menu-toggle {
         display: flex;
     }
@@ -499,7 +516,7 @@ body {
     }
 
     .nav-menu.active {
-        max-height: 300px;
+        max-height: 400px;
     }
 
     .nav-menu li {
@@ -510,6 +527,9 @@ body {
         display: block;
         padding: 15px 20px;
         border-bottom: 1px solid var(--cor-cinza);
+        min-height: var(--touch-target);
+        display: flex;
+        align-items: center;
     }
 
     .logo-texto {
@@ -560,11 +580,23 @@ body {
     .container {
         padding: 60px 0;
     }
+
+    .banner {
+        max-height: 300px;
+    }
 }
+
+/* ========================================
+   RESPONSIVO - MOBILE (até 480px)
+   ======================================== */
 
 @media (max-width: 480px) {
     html {
         font-size: 14px;
+    }
+
+    .nav-container {
+        padding: 12px 0;
     }
 
     .nav-logo {
@@ -577,10 +609,12 @@ body {
 
     .hero h1 {
         font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .hero .tagline {
         font-size: 0.9rem;
+        margin-bottom: 25px;
     }
 
     .container {
@@ -594,33 +628,56 @@ body {
 
     .card-icon {
         font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 0.95rem;
     }
 
     .botao-primario,
     .botao-secundario {
-        padding: 14px 24px;
+        padding: 14px 20px;
         font-size: 0.95rem;
         width: 100%;
+        gap: 6px;
     }
 
     .botao-grande {
-        padding: 16px 24px;
+        padding: 16px 20px;
+        font-size: 1rem;
     }
 
     .secao-titulo {
         font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .secao-descricao {
         font-size: 0.95rem;
+        margin-bottom: 30px;
     }
 
     .sobre-text h2 {
         font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .sobre-text p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
     }
 
     .banner {
         max-height: 250px;
+    }
+
+    .banner img {
+        height: auto;
     }
 
     .contato-item {
@@ -629,8 +686,36 @@ body {
 
     .contato-item i {
         font-size: 2rem;
+        margin-bottom: 10px;
     }
-}
+
+    .contato-item h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+
+    .contato-item p {
+        font-size: 0.95rem;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+        margin: 8px 0;
+    }
+
+    /* Evita zoom ao focar em inputs */
+    input,
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+
+    /* Melhora espaçamento entre links/botões */
+    a, button {
+        min-height: var(--touch-target);
+        padding-top: max(8px, (var(--touch-target) - 1.2em) / 2);
+        padding-bottom: max(8px, (var(--touch-target) - 1.2em) / 2);
+    }
 
 .card img {
     width: 100%;
@@ -643,12 +728,15 @@ body {
     font-weight: bold;
 }
 
-/* BOTÕES (ANIMADOS) */
+/* ========================================
+   BOTÕES ANIMADOS
+   ======================================== */
+
 .botao {
     display: inline-block;
     margin-top: 20px;
     padding: 14px 28px;
-    background: var(--vermelho);
+    background: var(--cor-primaria);
     color: var(--branco);
     text-decoration: none;
     font-weight: bold;
@@ -657,30 +745,47 @@ body {
         background 0.3s ease,
         transform 0.2s ease,
         box-shadow 0.2s ease;
+    min-height: var(--touch-target);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .botao:hover {
-    background: var(--vermelho-escuro);
+    background: var(--cor-primaria-escura);
     transform: scale(1.05);
     box-shadow: 0 8px 18px rgba(122,28,28,0.4);
 }
 
-/* CONTATO */
+.botao:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
+   CONTATO
+   ======================================== */
+
 .contato p {
     margin-bottom: 10px;
     font-size: 1.05rem;
 }
 
-/* FOOTER */
+/* ========================================
+   FOOTER
+   ======================================== */
+
 footer {
-    background: var(--vermelho-escuro);
-    color: var(--branco);
+    background: var(--cor-primaria-escura);
+    color: var(--cor-branco);
     text-align: center;
     padding: 25px 10px;
     font-size: 0.9rem;
 }
 
-/* ANIMAÇÃO SUAVE DE ENTRADA */
+/* ========================================
+   ANIMAÇÃO SUAVE DE ENTRADA
+   ======================================== */
+
 section {
     animation: fadeIn 0.8s ease forwards;
 }
@@ -696,13 +801,67 @@ section {
     }
 }
 
-/* RESPONSIVO */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
+/* ========================================
+   OTIMIZAÇÕES PARA MOBILE
+   ======================================== */
 
-    section h2 {
-        font-size: 1.7rem;
+/* Evita flicker ao tocar em links */
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"],
+button,
+a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+/* Melhora aparência de inputs em mobile */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    font-size: 16px !important;
+    border-radius: 8px;
+    border: 1px solid var(--cor-cinza);
+    padding: 12px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Remove o zoom padrão ao focar */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+/* Melhora scroll em mobile */
+* {
+    -webkit-user-select: text;
+    -webkit-user-drag: auto;
+}
+
+/* Performance em animações */
+.nav-menu.active,
+.card:hover,
+.contato-item:hover {
+    will-change: transform;
+}
+
+/* Prevenção de problema de viewport em mobile */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Melhora safe area para notched devices */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
     }
 }

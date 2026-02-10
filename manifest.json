@@ -1,0 +1,40 @@
+{
+  "name": "Instituto Salvador",
+  "short_name": "Instituto Salvador",
+  "description": "Fisioterapia, cuidado humano e reabilitação com dignidade",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#8b2e2e",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192?text=IS",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512?text=IS",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://via.placeholder.com/192x192?text=IS",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["medical", "health"],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/540x720?text=Screenshot",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
