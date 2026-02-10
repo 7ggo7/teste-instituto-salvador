@@ -13,15 +13,37 @@
 <nav class="navbar">
     <div class="nav-container">
         <div class="nav-logo">
-            <i class="fas fa-heart"></i> Instituto Salvador
+            <i class="fas fa-heart"></i> <span class="logo-texto">Instituto Salvador</span>
         </div>
-        <ul class="nav-menu">
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
             <li><a href="#sobre" class="nav-link">Sobre</a></li>
             <li><a href="#servicos" class="nav-link">Serviços</a></li>
             <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
     </div>
 </nav>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
 
 <!-- HEADER / HERO -->
 <header class="hero">

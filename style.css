@@ -64,6 +64,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+    position: relative;
 }
 
 .nav-logo {
@@ -77,6 +78,41 @@ body {
 
 .nav-logo i {
     font-size: 1.8rem;
+}
+
+.logo-texto {
+    white-space: nowrap;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 101;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--cor-primaria);
+    margin: 5px 0;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 .nav-menu {
@@ -441,8 +477,51 @@ body {
    ======================================== */
 
 @media (max-width: 768px) {
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-menu {
-        gap: 20px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: var(--cor-branco);
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        z-index: 100;
+    }
+
+    .nav-menu.active {
+        max-height: 300px;
+    }
+
+    .nav-menu li {
+        padding: 0;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--cor-cinza);
+    }
+
+    .logo-texto {
+        display: none;
+    }
+
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding: 80px 15px;
     }
 
     .hero h1 {
@@ -451,6 +530,14 @@ body {
 
     .hero .tagline {
         font-size: 1rem;
+    }
+
+    .botao-primario,
+    .botao-secundario {
+        padding: 14px 24px;
+        font-size: 1rem;
+        width: 100%;
+        justify-content: center;
     }
 
     .secao-titulo {
@@ -469,40 +556,79 @@ body {
     .contato-grid {
         grid-template-columns: 1fr;
     }
+
+    .container {
+        padding: 60px 0;
+    }
 }
 
 @media (max-width: 480px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 15px;
+    html {
+        font-size: 14px;
     }
 
-    .nav-menu {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+    .nav-logo {
+        font-size: 1rem;
     }
 
     .hero {
-        padding: 80px 15px;
+        padding: 60px 15px;
     }
 
     .hero h1 {
         font-size: 1.5rem;
     }
 
+    .hero .tagline {
+        font-size: 0.9rem;
+    }
+
     .container {
-        padding: 50px 0;
+        padding: 40px 0;
+        width: 95%;
     }
 
     .card {
         padding: 25px 15px;
     }
 
+    .card-icon {
+        font-size: 2.5rem;
+    }
+
     .botao-primario,
     .botao-secundario {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    .botao-grande {
+        padding: 16px 24px;
+    }
+
+    .secao-titulo {
+        font-size: 1.5rem;
+    }
+
+    .secao-descricao {
+        font-size: 0.95rem;
+    }
+
+    .sobre-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .banner {
+        max-height: 250px;
+    }
+
+    .contato-item {
+        padding: 20px;
+    }
+
+    .contato-item i {
+        font-size: 2rem;
     }
 }
 
