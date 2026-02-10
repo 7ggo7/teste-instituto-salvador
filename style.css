@@ -83,8 +83,12 @@ body {
     gap: 8px;
 }
 
-.nav-logo i {
-    font-size: 1.8rem;
+.nav-logo .logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 50px;
+    object-fit: contain;
+    display: block;
 }
 
 .logo-texto {
